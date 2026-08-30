@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projekte · Kian Gray</title>
+  <meta name="description" content="Softwareprojekte von Kian Gray: Vocompanion, MyTrackshelf und MyTraderJournal." />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Kian Gray" />
+  <meta property="og:title" content="Projekte · Kian Gray" />
+  <meta property="og:description" content="Softwareprojekte von Kian Gray: Vocompanion, MyTrackshelf und MyTraderJournal." />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Projekte · Kian Gray" />
+  <meta name="twitter:description" content="Softwareprojekte von Kian Gray: Vocompanion, MyTrackshelf und MyTraderJournal." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2222%22 fill=%22%230b1f3a%22/><text x=%2250%22 y=%2266%22 font-size=%2252%22 font-family=%22Arial%22 font-weight=%22700%22 fill=%22white%22 text-anchor=%22middle%22>KG</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="brand">
+        <span class="brand-mark">KG</span>
+        <span>Kian Gray</span>
+      </a>
+      <nav class="main-nav">
+        <a href="index.html" data-i18n="nav.home">Home</a>
+        <a href="about.html" data-i18n="nav.about">Über mich</a>
+        <a href="projects.html" aria-current="page" data-i18n="nav.projects">Projekte</a>
+        <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+      </nav>
+      <div class="header-actions">
+        <div class="lang-toggle">
+          <button type="button" data-lang="de" aria-pressed="true">DE</button>
+          <button type="button" data-lang="en" aria-pressed="false">EN</button>
+        </div>
+        <button class="nav-toggle" type="button" aria-label="Menü" aria-expanded="false">
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" style="padding-bottom: 56px;">
+      <div class="container">
+        <span class="hero-kicker" data-i18n="projects.eyebrow">Portfolio</span>
+        <h1 data-i18n="projects.title">Projekte</h1>
+        <p class="lead" data-i18n="projects.lead">Eine Auswahl meiner Softwareprojekte, von der ersten Idee bis zum fertigen Deployment.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid grid-3">
+          <a class="card project-card" href="projects/vocompanion.html">
+            <div class="thumb">
+              <img src="assets/img/vocompanion/dashboard.png" alt="Vocompanion Dashboard" loading="lazy" />
+            </div>
+            <div class="body">
+              <h3>Vocompanion</h3>
+              <p data-i18n="projects.p1Desc">Auf der Suche nach einer kostenlosen App, mit der sich Vokabeln aus dem Lehrbuch per Foto in ein interaktives Lernset verwandeln lassen, wurde ich nicht fündig. Also habe ich Vocompanion selbst entwickelt, eine App zum Vokabellernen.</p>
+              <div class="tag-row">
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag">SQLite</span>
+                <span class="tag">OpenAI API</span>
+              </div>
+              <span class="card-link">
+                <span data-i18n="projects.viewDetails">Details ansehen</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="card project-card" href="projects/mytrackshelf.html">
+            <div class="thumb">
+              <img src="assets/img/mytrackshelf/overview.png" alt="MyTrackshelf Overview" loading="lazy" />
+            </div>
+            <div class="body">
+              <h3>MyTrackshelf</h3>
+              <p data-i18n="projects.p2Desc">MyTrackshelf sammelt meine heruntergeladene Musik an einem Ort und macht sie werbefrei abspielbar. Eine einfache, eigene Alternative zu Streaming-Diensten mit Werbeunterbrechungen.</p>
+              <div class="tag-row">
+                <span class="tag">Node.js</span>
+                <span class="tag">Express</span>
+                <span class="tag">SQLite</span>
+              </div>
+              <span class="card-link">
+                <span data-i18n="projects.viewDetails">Details ansehen</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="card project-card" href="projects/mytraderjournal.html">
+            <div class="thumb">
+              <img src="assets/img/mytraderjournal/journals.png" alt="MyTraderJournal Übersicht" loading="lazy" />
+            </div>
+            <div class="body">
+              <h3>MyTraderJournal</h3>
+              <p data-i18n="projects.p3Desc">Nach mehreren Jahren aktivem Trading habe ich kein Tool gefunden, das meine Strategien und Trades zuverlässig auswertet. Also habe ich MyTraderJournal entwickelt.</p>
+              <div class="tag-row">
+                <span class="tag">React</span>
+                <span class="tag">TypeScript</span>
+                <span class="tag">Next.js</span>
+                <span class="tag">PostgreSQL</span>
+              </div>
+              <span class="card-link">
+                <span data-i18n="projects.viewDetails">Details ansehen</span>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span class="footer-text">© 2026 Kian Gray. <span data-i18n="footer.rights">Alle Rechte vorbehalten.</span></span>
+      <div class="footer-links">
+        <a href="https://github.com/Kian452" target="_blank" rel="noopener">GitHub</a>
+        <a href="contact.html" data-i18n="nav.contact">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/translations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
