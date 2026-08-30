@@ -26,35 +26,65 @@ function safeJoin(root, requestPath) {
   return resolved;
 }
 
-const server = http.createServer((req, res) => {
-  let filePath = safeJoin(ROOT, req.url === "/" ? "/index.html" : req.url);
+function isFile(candidate) {
+  try {
+    return fs.statSync(candidate).isFile();
+  } catch {
+    return false;
+  }
+}
 
-  if (!filePath) {
+// Resolves a requested path to an actual file on disk. Handles exact
+// matches, "clean URLs" without a .html extension (Railway's edge strips
+// it for browser navigations before forwarding the request), and
+// directory index files. The .html candidate is checked before treating
+// the bare path as a directory, since e.g. /projects must resolve to
+// projects.html rather than the unrelated projects/ folder.
+function resolveFile(urlPath) {
+  if (urlPath === "/" || urlPath === "") {
+    return path.join(ROOT, "index.html");
+  }
+
+  const base = path.join(ROOT, urlPath);
+  const candidates = [base, `${base}.html`, path.join(base, "index.html")];
+
+  for (const candidate of candidates) {
+    if (isFile(candidate)) return candidate;
+  }
+  return null;
+}
+
+const server = http.createServer((req, res) => {
+  const requestPath = safeJoin(ROOT, req.url) ? decodeURIComponent(req.url.split("?")[0].split("#")[0]) : null;
+
+  if (requestPath === null) {
     res.writeHead(400);
     res.end("Bad request");
     return;
   }
 
-  fs.stat(filePath, (err, stats) => {
-    if (!err && stats.isDirectory()) {
-      filePath = path.join(filePath, "index.html");
+  const filePath = resolveFile(requestPath);
+
+  if (!filePath) {
+    fs.readFile(path.join(ROOT, "404.html"), (notFoundErr, notFoundData) => {
+      res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
+      res.end(notFoundErr ? "404 Not Found" : notFoundData);
+    });
+    return;
+  }
+
+  fs.readFile(filePath, (readErr, data) => {
+    if (readErr) {
+      res.writeHead(500);
+      res.end("Internal server error");
+      return;
     }
 
-    fs.readFile(filePath, (readErr, data) => {
-      if (readErr) {
-        fs.readFile(path.join(ROOT, "404.html"), (notFoundErr, notFoundData) => {
-          res.writeHead(404, { "Content-Type": "text/html; charset=utf-8" });
-          res.end(notFoundErr ? "404 Not Found" : notFoundData);
-        });
-        return;
-      }
-
-      const ext = path.extname(filePath).toLowerCase();
-      res.writeHead(200, {
-        "Content-Type": CONTENT_TYPES[ext] || "application/octet-stream",
-      });
-      res.end(data);
+    const ext = path.extname(filePath).toLowerCase();
+    res.writeHead(200, {
+      "Content-Type": CONTENT_TYPES[ext] || "application/octet-stream",
     });
+    res.end(data);
   });
 });
 
